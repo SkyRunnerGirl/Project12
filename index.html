@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="bg-secondary bg-opacity-25">
+    <div id="container" class="container bg-info bg-opacity-25 container-sm p-3 m-3 mx-auto">
+        
+        <div class="row">
+            <h2 class="text-center">Weather App</h2>
+        </div> <!--header row / row 1 div-->
+
+        <div class="row">
+            <div class="col-10">
+                <label for="location" class="form-label">Location Name</label>
+                <input type="text" class="form-control" id="location" placeholder="City">
+            </div>
+            <div class="col-2 d-flex align-items-end">
+                <button id="addLocation" class="btn btn-outline-primary" type="button" onclick="onAddLocationClick()">Add Location</button>
+            </div>
+        </div> <!--choose location row / row 2 div-->
+
+        <div class="row text-center mt-3">
+            <h3 id="locationDisplay"></h3>
+        </div> <!--location display row / row 3 div-->
+
+        <div class="card text-center mt-3" >
+            <div id="weather-container" class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Current Temp: <span id="temp_c"></span>&deg;C / <span id="temp_f"></span>&deg;F</li>
+                    <li class="list-group-item">Condition: <span id="condition"></span><img src="images/uv.png"></img>  UV Index: <span id="uv_index"></span></li>
+                    <li class="list-group-item">Max Temp: <span id="maxtemp_c"></span>&deg;C / <span id="maxtemp_f"></span>&deg;F</li>
+                    <li class="list-group-item">Min Temp: <span id="mintemp_c"></span>&deg;C / <span id="mintemp_f"></span>&deg;F</li>
+                    <li class="list-group-item">Average Temp: <span id="avgtemp_c"></span>&deg;C / <span id="avgtemp_f"></span>&deg;F</li>
+                    <li class="list-group-item"><img src="images/sunrise.png"></img>  Sunrise: <span id="sunrise"></span><img src="images/sunset.png"></img>  Sunset: <span id="sunset"></span></li>
+                </ul>
+            </div>
+            
+            <div class="card-footer">
+                <button id="removeButton" class="btn btn-danger" type="button" onclick="onResetClick()">Reset</button>
+            </div>
+        </div> <!--card div-->
+
+        <div class="card-footer mt-3 text-center">
+            <a href="https://www.flaticon.com/free-icons/sunburn" title="sunburn icons">Sunburn icons created by Freepik - Flaticon</a>
+        </div>
+    </div> <!--container div-->
+
+
+    <script src="API_Key.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="WeatherApp.js"></script>
+</body>
+</html>
