@@ -2,6 +2,14 @@
     height: 700px;
 }
 
+#addLocation {
+    height: fit-content;
+    max-height: 3rem;
+    width: fit-content;
+    font-size: 1vw;
+    text-align: center;
+}
+
 #col {
     height: 500px;
 }
