@@ -13,3 +13,7 @@
 #sunrise {
     padding-right: 5rem;
 }
+
+#locationDisplay {
+    min-height: 50px;
+}

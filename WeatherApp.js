@@ -10,15 +10,62 @@
 
 
 /******* ADD LOCATION *******/
-
-const onAddLocationClick = async () => {
+// This is kind of the "start" button, it calls multiple functions when the "Add Location" button is clicked
+// It displays the location above the data
+// It fetches the data from the API for weather and forecast
+// It then displays (renders) the data on the page
+const onAddLocationClick = async (event) => {
+    console.log(event)
+    event.preventDefault()
     const locationDisplay = document.getElementById("locationDisplay");
     locationDisplay.textContent = document.getElementById("location").value;
     const weatherData = await fetchCurrentWeatherData();
     renderCurrentWeatherData(weatherData);
     const forecastData = await fetchForecastData();
     renderForecastData(forecastData);
+    saveLocation();
 }
+
+// This creates an entry for each location on the db.json file
+async function saveLocation() {
+    const location = document.getElementById("location").value
+    const response = await fetch('http://localhost:3000/locations', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify( {location: location} )
+    })
+    const newlySavedLocation = await response.json()
+    
+
+    // after creating on the db.json file, this creates a pill element to show the previous locations added
+    const newPill = document.createElement('span');
+    newPill.classList.add("badge");
+    newPill.classList.add("rounded-pill");
+    newPill.classList.add("text-bg-primary");
+    newPill.classList.add("ps-2");
+    newPill.textContent = location;
+    newPill.setAttribute("id", newlySavedLocation.id);
+
+    // put newly created pill into container element to display
+    document.getElementById("pill-container").appendChild(newPill);
+
+};
+
+const pillContainer = document.getElementById("pill-container");
+
+// sets doubleclick event to delete the pill object from db.json file and DOM
+pillContainer.addEventListener("dblclick", function(event) {
+    const pillId = event.target.getAttribute("id") // finding the correct element to delete by the ID generated when added to db.json file
+    if (pillId) {
+        // sends request to delete to db.json file
+        fetch(`http://localhost:3000/locations/${pillId}`, {
+            method: 'DELETE',
+        })
+    }
+    // removes pill element from DOM and page
+    event.target.remove()
+})
+
 
 /******* WEATHER *******/
 
@@ -37,10 +84,10 @@ function renderCurrentWeatherData(weatherData) {
     const tempF = weatherData.current.temp_f
     document.getElementById("temp_f").innerHTML = tempF
     };
-    
 
 
 /******* FORECAST *******/
+
 // Get forecast data from API
 async function fetchForecastData() {
     const location = document.getElementById("location").value
@@ -82,20 +129,11 @@ function renderForecastData(forecastData) {
     document.getElementById("sunset").innerHTML = sunset
 
     };
-    
-
-/******* ASTRONOMY *******/
-// Get astronomy data from API
-function fetchAstronomyData() {
-    const astronomyURL = "http://api.weatherapi.com/v1/astronomy.json?key=" + API_Key;
-    fetch(astronomyURL)
-    return []
-}
 
 /******* REMOVE *******/
-// Removes the weather data from page
+// Removes the weather data from page when reset button is clicked
 const onResetClick = async () => {
-    const spanElements = document.querySelectorAll("span");
+    const spanElements = document.querySelectorAll("li span");
     spanElements.forEach(span => {
         span.innerHTML = "";
     });

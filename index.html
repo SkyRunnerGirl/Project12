@@ -15,19 +15,26 @@
             <h2 class="text-center">Weather App</h2>
         </div> <!--header row / row 1 div-->
 
-        <div class="row">
-            <div class="col-10">
-                <label for="location" class="form-label">Location Name</label>
-                <input type="text" class="form-control" id="location" placeholder="City">
-            </div>
-            <div class="col-2 d-flex align-items-end">
-                <button id="addLocation" class="btn btn-outline-primary" type="button" onclick="onAddLocationClick()">Add Location</button>
-            </div>
-        </div> <!--choose location row / row 2 div-->
+        <form onsubmit="onAddLocationClick(event)">
+            <div class="row mx-auto">
+                <div class="col-sm-11 m-0 p-0">
+                    <label for="location" class="form-label">Location Name</label>
+                    <input type="text" class="form-control" id="location" placeholder="City">
+                </div>
+
+                <div class="col-sm-1 d-flex m-0 p-0 ps-2 align-items-end">
+                    <button id="addLocation" class="btn btn-outline-primary btn-sm" type="submit" >Add Location</button>
+                </div>
+            </div> <!--location name, input, add location btn row / row 2 div-->
+        </form>
+
+        <div id="pill-container" class="mt-2">
+            <span class="badge rounded-pill text-bg-primary ps-2sp"></span>
+        </div> <!--pill display for saved locations / row 3 div-->
 
         <div class="row text-center mt-3">
             <h3 id="locationDisplay"></h3>
-        </div> <!--location display row / row 3 div-->
+        </div> <!--location display row / row 4 div-->
 
         <div class="card text-center mt-3" >
             <div id="weather-container" class="card-body">
