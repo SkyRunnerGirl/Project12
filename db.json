@@ -1,3 +1,16 @@
 {
-  "locations": []
+  "locations": [
+    {
+      "location": "Phoenix, AZ",
+      "id": 1
+    },
+    {
+      "location": "Seoul, South Korea",
+      "id": 2
+    },
+    {
+      "location": "Seoul, South Korea",
+      "id": 4
+    }
+  ]
 }
